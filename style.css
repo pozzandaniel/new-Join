@@ -1,0 +1,51 @@
+
+
+.body-login {
+    background-color: #F5F5F5;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-container {
+    width: 652px;
+    height: 513px;
+    padding: 35px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    position: relative;
+    
+}
+
+.logo-login {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    height: 80px;
+    width: 80px;
+}
+
+.logintitle {
+    font-family: Inter;
+    font-weight: 700;
+}
+
+.sign-up-link {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.backarrow {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
