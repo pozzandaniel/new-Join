@@ -15,16 +15,17 @@
     <div class="sign-up-link"><span>Not a Join user?</span><a href="signup.html"><button>Sign up</button></a></div>
     <form class="login-container">
         <h1 class="logintitle">Log in</h1>
-        <input type="email">
-        <input type="password">
+        <input type="email" id="loginEmail">
+        <input type="password" id="loginPassword">
         <div class="form-action">
             <input type="checkbox">
             <label>Remember me</label>
             <span>Forgot my password</span>
         </div>
         <div class="form-buttons">
-            <button>Log in</button>
-            <button>Guest Log in</button>
+            <button type="button" id="loginAction" name="loginAction">Log in</button>
+            <button type="button" id="logout" name="logout" >Guest Log in</button>
+            <button style="display: none;" id="submitData"></button>
         </div>
     </form>
     

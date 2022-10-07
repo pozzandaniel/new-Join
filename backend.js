@@ -1,7 +1,9 @@
 
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.11.0/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.11.0/firebase-auth.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut  } from "https://www.gstatic.com/firebasejs/9.11.0/firebase-auth.js";
+    import { getDatabase, ref, set, update, onValue } from "https://www.gstatic.com/firebasejs/9.11.0/firebase-database.js";
+
 
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
@@ -13,36 +15,140 @@
       projectId: "join-1c1f8",
       storageBucket: "join-1c1f8.appspot.com",
       messagingSenderId: "1031166849094",
-      appId: "1:1031166849094:web:9547a88ddee0b9790bda47"
+      appId: "1:1031166849094:web:9547a88ddee0b9790bda47",
+      databaseURL: "https://join-1c1f8-default-rtdb.europe-west1.firebasedatabase.app"
     };
   
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const auth = getAuth();
+    const database = getDatabase(app);
+  
 
 
 
 
-submitData.addEventListener('click', (e) => {
 
-    let email = document.getElementById('emailSignUp').value;
-    let password = document.getElementById('passwordSignUp').value;
+    submitData.addEventListener('click', (e) => {
     
+        let email = document.getElementById('emailSignUp').value;
+        let password = document.getElementById('passwordSignUp').value;
+        let username = document.getElementById('nameSignUp').value;
+        
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            // ... user.uid
+            set(ref(database, 'users/' + user.uid), {
+                username: username,
+                email: email,
+                password: password
+            })
+                .then(() => {
+                    // Data saved successfully!
+                    alert('user created successfully');
     
-    
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+                })
+                .catch((error) => {
+                    // The write failed...
+                    alert(error);
+                });
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // ..
+            alert(errorMessage);
+        });
+
+        
+        
+    })
+
+    loginAction.addEventListener('click', (e) => {
+        let email = document.getElementById('loginEmail').value;
+        let password = document.getElementById('loginPassword').value;
+
+        signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-        alert('user created!')
-    
-      
-      })
-      .catch((error) => {
+        let lgDate = new Date();
+        // ...
+        update(ref(database, 'users/' + user.uid), {
+            last_login: lgDate,
+        })
+            .then(() => {
+                // Data saved successfully!
+                alert('user logged successfully');
+
+            })
+            .catch((error) => {
+                // The write failed...
+                alert(error);
+            });
+        alert(email + ' logged in');
+        })
+        .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorMessage);
-        // ..
-      });
-})
+        alert(errorMessage);
+        });
+
+        
+    })
+
+    onAuthStateChanged(auth, (user) => {
+        let data;
+        if (user) {
+          // User is signed in, see docs for a list of available properties
+          // https://firebase.google.com/docs/reference/js/firebase.User
+          const uid = user.uid;
+          const starCountRef = ref(database, 'users/' + uid );
+          onValue(starCountRef, (snapshot) => {
+            data = snapshot.val();
+            console.log(data);
+          });
+
+          // ...
+        } else {
+            // User is signed out
+            console.log(data);
+            console.log('user logged out')
+            const splittedUrl = window.location.href.split('/');
+            const url = splittedUrl[splittedUrl.length-1]; 
+            if(url != 'login.html' && url != 'signup.html'){
+                window.location.replace('login.html')
+            }
+           
+
+          // ...
+        }
+    });
+
+    logout.addEventListener('click', (e) => {
+       
+
+       
+        
+        signOut(auth).then(() => {
+
+            // Sign-out successful.
+        }).catch((error) => {
+         // An error happened.
+        });
+    })
+
+ 
+
+    
+   
+
+    
+  
+
+
+
+ 
 
