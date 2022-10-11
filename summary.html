@@ -7,11 +7,24 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="fonts.css">
     <script src="script.js"></script>
+    <script type="module" src="backend.js"></script>
     <title>Summary</title>
 </head>
 <body onload="init()">
     <div class="side_menu" w3-include-html="templates/side_menu.html"></div>
     <div class="header" w3-include-html="templates/header.html"></div>
+    <div class="workspace">
+        <button type="button" id="logout" name="logout" class="d-none"  >Logout</button>
+        <div class="summary-top-box">
+            <h1>Summary</h1>
+            <p>Everything in a nutshell</p>
+        </div>
+        <div class="summary-content">
+            <div class="summary-left-box"></div>
+            <div class="summary-right-box">
 
+            </div>
+        </div>
+    </div>
 </body>
 </html>

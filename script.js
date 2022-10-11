@@ -1,3 +1,6 @@
+let logoutStatus = false;
+
+
 async function init() {
     await includeHTML();
 
@@ -16,3 +19,26 @@ async function includeHTML() {
         }
     }
 }
+
+function toggleLogout() {
+    if(logoutStatus == false) {
+        document.getElementById('logout').classList.remove('d-none');
+        logoutStatus = true;
+    } else {
+        document.getElementById('logout').classList.add('d-none');
+        logoutStatus = false;
+
+    }
+}
+
+
+// function logout() {
+//     signOut(auth).then(() => {
+                
+//         // Sign-out successful.
+//     }).catch((error) => {
+//           // An error happened.
+//     });
+//     window.location.href='login.html';
+// }
+

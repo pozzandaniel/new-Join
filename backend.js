@@ -4,7 +4,6 @@
     import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut  } from "https://www.gstatic.com/firebasejs/9.11.0/firebase-auth.js";
     import { getDatabase, ref, set, update, onValue } from "https://www.gstatic.com/firebasejs/9.11.0/firebase-database.js";
 
-
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
   
@@ -23,84 +22,95 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth();
     const database = getDatabase(app);
-  
 
+    let submitDataExist = document.getElementById('submitData');
+    let loginActionExist = document.getElementById('loginAction');
+    let logoutExist = document.getElementById('logout');
 
-
-
-
-    submitData.addEventListener('click', (e) => {
     
-        let email = document.getElementById('emailSignUp').value;
-        let password = document.getElementById('passwordSignUp').value;
-        let username = document.getElementById('nameSignUp').value;
+
+
+    if(submitDataExist){
+
+        submitData.addEventListener('click', (e) => {
         
-        createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Signed in
+            let email = document.getElementById('emailSignUp').value;
+            let password = document.getElementById('passwordSignUp').value;
+            let username = document.getElementById('nameSignUp').value;
+            
+            createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in
+                const user = userCredential.user;
+                // ... user.uid
+                set(ref(database, 'users/' + user.uid), {
+                    username: username,
+                    email: email,
+                    password: password
+                })
+                    .then(() => {
+                        // Data saved successfully!
+                        alert('user created successfully');
+        
+                    })
+                    .catch((error) => {
+                        // The write failed...
+                        alert(error);
+                    });
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // ..
+                alert(errorMessage);
+            });
+    
+            
+            
+        })
+    }
+
+    if(loginActionExist) {
+
+        loginAction.addEventListener('click', (e) => {
+            let email = document.getElementById('loginEmail').value;
+            let password = document.getElementById('loginPassword').value;
+    
+            signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+            // Signed in 
             const user = userCredential.user;
-            // ... user.uid
-            set(ref(database, 'users/' + user.uid), {
-                username: username,
-                email: email,
-                password: password
+            let lgDate = new Date();
+            // ...
+            update(ref(database, 'users/' + user.uid), {
+                last_login: lgDate,
             })
                 .then(() => {
                     // Data saved successfully!
-                    alert('user created successfully');
-    
+                    alert('user logged successfully');
+
                 })
                 .catch((error) => {
                     // The write failed...
                     alert(error);
                 });
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // ..
-            alert(errorMessage);
-        });
-
-        
-        
-    })
-
-    loginAction.addEventListener('click', (e) => {
-        let email = document.getElementById('loginEmail').value;
-        let password = document.getElementById('loginPassword').value;
-
-        signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        let lgDate = new Date();
-        // ...
-        update(ref(database, 'users/' + user.uid), {
-            last_login: lgDate,
-        })
-            .then(() => {
-                // Data saved successfully!
-                alert('user logged successfully');
-
+            alert(email + ' logged in');
             })
             .catch((error) => {
-                // The write failed...
-                alert(error);
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            alert(errorMessage);
             });
-        alert(email + ' logged in');
+    
+            
         })
-        .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(errorMessage);
-        });
+    }
 
-        
-    })
 
     onAuthStateChanged(auth, (user) => {
         let data;
+        const splittedUrl = window.location.href.split('/');
+        const url = splittedUrl[splittedUrl.length-1]; 
         if (user) {
           // User is signed in, see docs for a list of available properties
           // https://firebase.google.com/docs/reference/js/firebase.User
@@ -109,6 +119,9 @@
           onValue(starCountRef, (snapshot) => {
             data = snapshot.val();
             console.log(data);
+            if(url == 'login.html' || url == 'signup.html'){
+                window.location.replace('summary.html');
+            }
           });
 
           // ...
@@ -116,8 +129,6 @@
             // User is signed out
             console.log(data);
             console.log('user logged out')
-            const splittedUrl = window.location.href.split('/');
-            const url = splittedUrl[splittedUrl.length-1]; 
             if(url != 'login.html' && url != 'signup.html'){
                 window.location.replace('login.html')
             }
@@ -126,19 +137,32 @@
           // ...
         }
     });
+    
+    if(logoutExist){
+        console.log('logout exist');
+        window.logout.addEventListener('click', (e) => {
+            console.log('logout work')
+            signOut(auth).then(() => {
+                
+                // Sign-out successful.
+            }).catch((error) => {
+                  // An error happened.
+            });
+        })
+            
+    }
 
-    logout.addEventListener('click', (e) => {
+    
+
+
+
+    
        
 
        
         
-        signOut(auth).then(() => {
-
-            // Sign-out successful.
-        }).catch((error) => {
-         // An error happened.
-        });
-    })
+      
+    
 
  
 

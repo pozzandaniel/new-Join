@@ -1,4 +1,9 @@
+/* style of general */
+.d-none {
+    display: none;
+}
 
+/* end of general */
 
 .body-login {
     background-color: #F5F5F5;
@@ -114,10 +119,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
 }
 
 .left-header-elem {
-    margin-left: 40px;
+    margin-left: 80px;
 }
 
 .left-header-elem span {
@@ -130,4 +136,57 @@
     display: flex;
     align-items: center;
     gap: 20px;
+}
+
+.right-header-elem img {
+    cursor: pointer;
+    
+}
+
+#logout {
+    width: 130px;
+    height: 53px;
+    padding: 10px;
+    background-color: #2A3647;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 20px 0px 20px 20px;
+    font-family: Inter;
+    font-size: 16px;
+    text-align: center;
+    color: #CDCDCD;
+    position: fixed;
+    right: 0;
+    top: 89px;
+    cursor: pointer;
+}
+
+/* End style header */
+
+/* Style Workspace */
+.workspace {
+    position: absolute;
+    left: 232px;
+    top: 89px;
+    margin-left: 80px;
+}
+
+
+/* Style summary */
+.summary-top-box {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.summary-top-box h1 {
+    font-family: Inter;
+    font-weight: 700;
+}
+
+.summary-top-box p {
+    border-left: 3px solid #29ABE2;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: Inter;
 }
