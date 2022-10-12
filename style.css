@@ -176,6 +176,16 @@ body {
     margin-left: 80px;
 }
 
+.workspace-top-box {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.workspace-top-box h1 {
+    font-family: Inter;
+    font-weight: 700;
+}
 
 /* Style summary */
 
@@ -185,18 +195,8 @@ body {
     gap: 80px;
 }
 
-.summary-top-box {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
 
-.summary-top-box h1 {
-    font-family: Inter;
-    font-weight: 700;
-}
-
-.summary-top-box p {
+.workspace-top-box p {
     border-left: 3px solid #29ABE2;
     padding-left: 10px;
     padding-top: 10px;
@@ -343,3 +343,118 @@ body {
     font-size: 64px;
     color: #29ABE2;
 }
+
+/* Summary end */
+
+/* Add Task Style */
+
+form {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+label {
+    font-family: Inter;
+    font-size: 21px;
+}
+
+input,textarea {
+    width: 422px;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+#title, #dueDate, #subtasks {
+    height: 45px;
+    border-radius: 10px;
+    box-sizing: border-box;
+
+
+}
+
+#priority button {
+    width: 136px;
+    font-family: Inter;
+    font-size: 19px;
+    /* height: 45px; */
+    box-sizing: border-box;
+    border-radius: 10px;
+
+
+}
+
+#title, #priority button {
+    padding: 9px 21px;
+}
+
+#category, #assigned {
+    padding: 11px 21px;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+#description, #dueDate, #subtasks {
+    padding: 14px 21px;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.add-task-content {
+    display: flex;
+    box-sizing: border-box;
+}
+
+#description {
+    height: 119px;
+}
+
+.left-form-box, .right-form-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.left-form-box {
+    border-right: 1px solid #D1D1D1;
+    padding-right: 40px;
+    box-sizing: border-box;
+}
+
+.right-form-box {
+    border-left: 1px solid #D1D1D1;
+    padding-left: 40px;
+}
+
+.subtsk-check {
+    height: 15px;
+}
+
+.btns-form {
+    position: absolute;
+    right: 0;
+    bottom: -60px;
+}
+
+.btns-form button {
+    height: 61px;
+    font-family: Inter;
+    font-size: 19px;
+    padding:15px 10;
+    box-sizing: border-box;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#createTask {
+    background-color: #2A3647;
+    color: #FFFFFF;
+    font-weight: 700;
+    border: 1px solid #2A3647
+}
+
+#clear {
+    background-color: #F5F5F5;
+    border: 1px solid #2A3647;
+}
+
