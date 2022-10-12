@@ -108,6 +108,7 @@
 
 
     onAuthStateChanged(auth, (user) => {
+        let account = document.getElementById('account');
         let data;
         const splittedUrl = window.location.href.split('/');
         const url = splittedUrl[splittedUrl.length-1]; 
@@ -119,6 +120,7 @@
           onValue(starCountRef, (snapshot) => {
             data = snapshot.val();
             console.log(data);
+            account.innerHTML = `${data.username}`;
             if(url == 'login.html' || url == 'signup.html'){
                 window.location.replace('summary.html');
             }
