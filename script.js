@@ -1,6 +1,7 @@
 let logoutStatus = false;
 
 
+
 async function init() {
     await includeHTML();
 
@@ -27,8 +28,47 @@ function toggleLogout() {
     } else {
         document.getElementById('logout').classList.add('d-none');
         logoutStatus = false;
-
+        
     }
+}
+
+
+function activeOption(){
+    let category = document.getElementById('category');
+    let newCategory = document.getElementById('newCategory');
+    let inputIcons = document.getElementById('input-icons');
+    if(category.value == 'new-category'){
+       category.classList.add('d-none');
+       newCategory.classList.remove('d-none');
+       inputIcons.classList.remove('d-none')
+    }
+}
+
+
+function cancelNewCategory() {
+    let category = document.getElementById('category');
+    let newCategory = document.getElementById('newCategory');
+    let inputIcons = document.getElementById('input-icons');
+    newCategory.value = '';
+    category.classList.remove('d-none');
+    newCategory.classList.add('d-none');
+    inputIcons.classList.add('d-none');
+
+}
+
+function addNewCategory() {
+    let category = document.getElementById('category');
+    let newCategory = document.getElementById('newCategory');
+    let inputIcons = document.getElementById('input-icons');
+    category.innerHTML += `<option value="${newCategory.value.toLowerCase()}" >${newCategory.value}</option>
+    `;
+    newCategory.value = '';
+    category.classList.remove('d-none');
+    newCategory.classList.add('d-none');
+    inputIcons.classList.add('d-none');
+
+
+
 }
 
 
@@ -37,8 +77,8 @@ function toggleLogout() {
                 
 //         // Sign-out successful.
 //     }).catch((error) => {
-//           // An error happened.
-//     });
+    //           // An error happened.
+    //     });
 //     window.location.href='login.html';
 // }
 

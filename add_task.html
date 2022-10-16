@@ -18,41 +18,58 @@
         <div class="workspace-top-box">
             <h1>Add Task</h1>
         </div>
-        <form >
+        <form class="form-tasks" >
             <div class="add-task-content">
 
                 <div class="left-form-box">
-                    <label for="title">Title</label>
-                    <input type="text" id="title" placeholder="Enter a title">
-                    <label for="description">Description</label>
+                    <label class="label-tasks" for="title">Title</label>
+                    <input class="input-tasks" type="text" id="title" placeholder="Enter a title">
+                    <label class="label-tasks" for="description">Description</label>
                     <textarea name="" id="description" cols="30" rows="10"></textarea>
-                    <label for="category">Category</label>
-                    <select name="" id="category">
-                        <option  >Select task category</option>
-                        <option value="">New category</option>
-                        <option value="">Sales</option>
-                        <option value="">Backoffice</option>
-                    </select>
-                    <label for="assigned">Assigned to</label>
-                    <select name="" id="assigned">
-                        <option value="">Select contacts to assign</option>
-                        <option value="">You</option>
-                        <option value="">Maximilian Vogel</option>
-                        <option value="">Invite new contact</option>
-                    </select>
+                    <label class="label-tasks" for="category">Category</label>
+                    <div id="newCategoryCont">
+                        <select name="" id="category" onclick="activeOption(value)" >
+                            <option selected="true" disabled="disabled">Select task category</option>
+                            <option value="new-category" >New category</option>
+                            <option value="sales" >Sales</option>
+                            <option value="backoffice" >Backoffice</option>
+                        </select>
+                        <input type="text" class="d-none" id="newCategory" placeholder="New category name">
+                        <div id="input-icons" class="d-none">
+                            <img onclick="cancelNewCategory()" id="closeIcon" src="./assets/img/close.svg" alt="">
+                            <img onclick="addNewCategory()" id="doneIcon" src="./assets/img/done.svg" alt="">
+                        </div>
+
+                    </div>
+                    <label class="label-tasks" for="assigned">Assigned to</label>
+                    <div id="newContactCont">
+                        <select name="" id="assigned">
+                            <option selected="true" disabled="disabled">Select contacts to assign</option>
+                            <option value="">You</option>
+                            <option value="">Maximilian Vogel</option>
+                            <option value="">Invite new contact</option>
+                        </select>
+                        <input type="text" class="d-none" id="newContact" placeholder="Contact email">
+                        <div id="img-icons" class="d-none">
+                            <img id="closeImg" src="./assets/img/close.svg" alt="">
+                            <img id="doneImg" src="./assets/img/done.svg" alt="">
+                        </div>
+                        
+
+                    </div>
                 </div>
                 <div class="right-form-box">
-                    <label for="dueDate">Due date</label>
-                    <input type="date" id="dueDate">
-                    <label for="priority">Prio</label>
+                    <label class="label-tasks" for="dueDate">Due date</label>
+                    <input class="input-tasks" type="date" id="dueDate">
+                    <label class="label-tasks" for="priority">Prio</label>
                     <div id="priority">
-                        <button>Urgent</button>
-                        <button>Medium</button>
-                        <button>Low</button>
+                        <button>Urgent <img src="./assets/img/urgent2.svg" alt=""></button>
+                        <button>Medium <img src="./assets/img/medium.svg" alt=""></button>
+                        <button>Low <img src="./assets/img/low.svg" alt=""></button>
                     </div>
-                    <label for="subtasks">Subtasks</label>
-                    <input type="text" id="subtasks">
-                    <input class="subtsk-check" type="checkbox" >
+                    <label class="label-tasks" for="subtasks">Subtasks</label>
+                    <input class="input-tasks" type="text" id="subtasks">
+                    <input class="input-tasks" class="subtsk-check" type="checkbox" >
     
                 </div>
             </div>

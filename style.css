@@ -1,6 +1,6 @@
 /* style of general */
 .d-none {
-    display: none;
+    display: none !important;
 }
 
 body {
@@ -348,38 +348,46 @@ body {
 
 /* Add Task Style */
 
-form {
+.form-tasks {
     display: flex;
     flex-direction: column;
     position: relative;
 }
 
-label {
+.label-tasks {
     font-family: Inter;
     font-size: 21px;
 }
 
-input,textarea {
+.input-tasks,textarea {
     width: 422px;
     border-radius: 10px;
     box-sizing: border-box;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
 }
 
 #title, #dueDate, #subtasks {
     height: 45px;
     border-radius: 10px;
     box-sizing: border-box;
-
+    border: 1px solid #D1D1D1;
 
 }
 
 #priority button {
     width: 136px;
+    height: 45px;
     font-family: Inter;
-    font-size: 19px;
-    /* height: 45px; */
+    font-size: 17px;
     box-sizing: border-box;
     border-radius: 10px;
+    border: none;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
 
 
 }
@@ -392,7 +400,11 @@ input,textarea {
     padding: 11px 21px;
     border-radius: 10px;
     box-sizing: border-box;
+    border: 1px solid #D1D1D1;
+    width: 100%;
+
 }
+
 
 #description, #dueDate, #subtasks {
     padding: 14px 21px;
@@ -407,6 +419,9 @@ input,textarea {
 
 #description {
     height: 119px;
+    border: 1px solid #D1D1D1;
+    resize: none;
+
 }
 
 .left-form-box, .right-form-box {
@@ -450,11 +465,53 @@ input,textarea {
     background-color: #2A3647;
     color: #FFFFFF;
     font-weight: 700;
-    border: 1px solid #2A3647
+    border: 1px solid #2A3647;
 }
 
 #clear {
     background-color: #F5F5F5;
     border: 1px solid #2A3647;
+}
+
+#newCategoryCont {
+    position: relative;
+}
+
+#newCategory {
+    height: 45px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    border: 1px solid #D1D1D1;
+    width: 100%;
+    padding: 9px 21px;
+}
+
+#input-icons {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    padding: 9px;
+    height: 45px;
+    box-sizing: border-box;
+}
+
+#input-icons img {
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+}
+
+#closeIcon {
+    border-right: 1px solid #D1D1D1;
+    padding-right: 4px;
+
+}
+
+#doneIcon {
+    border-left: 1px solid #D1D1D1;
+    padding-left: 4px;
+
 }
 
