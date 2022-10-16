@@ -18,7 +18,7 @@
         <div class="workspace-top-box">
             <h1>Add Task</h1>
         </div>
-        <form class="form-tasks" >
+        <form class="form-tasks" onsubmit="createNewTask()" >
             <div class="add-task-content">
 
                 <div class="left-form-box">
@@ -28,7 +28,7 @@
                     <textarea name="" id="description" cols="30" rows="10"></textarea>
                     <label class="label-tasks" for="category">Category</label>
                     <div id="newCategoryCont">
-                        <select name="" id="category" onclick="activeOption(value)" >
+                        <select name="" id="category" onclick="activeCategory()" >
                             <option selected="true" disabled="disabled">Select task category</option>
                             <option value="new-category" >New category</option>
                             <option value="sales" >Sales</option>
@@ -43,16 +43,16 @@
                     </div>
                     <label class="label-tasks" for="assigned">Assigned to</label>
                     <div id="newContactCont">
-                        <select name="" id="assigned">
+                        <select name="" id="assigned" onclick="activeContact()">
                             <option selected="true" disabled="disabled">Select contacts to assign</option>
-                            <option value="">You</option>
-                            <option value="">Maximilian Vogel</option>
-                            <option value="">Invite new contact</option>
+                            <option value="new-contact">Invite new contact</option>
+                            <option value="you">You</option>
+                            <option value="maxilian-vogel">Maximilian Vogel</option>
                         </select>
                         <input type="text" class="d-none" id="newContact" placeholder="Contact email">
                         <div id="img-icons" class="d-none">
-                            <img id="closeImg" src="./assets/img/close.svg" alt="">
-                            <img id="doneImg" src="./assets/img/done.svg" alt="">
+                            <img onclick="cancelNewContact()" id="closeImg" src="./assets/img/close.svg" alt="">
+                            <img onclick="addNewContact()" id="doneImg" src="./assets/img/done.svg" alt="">
                         </div>
                         
 
@@ -67,15 +67,26 @@
                         <button>Medium <img src="./assets/img/medium.svg" alt=""></button>
                         <button>Low <img src="./assets/img/low.svg" alt=""></button>
                     </div>
-                    <label class="label-tasks" for="subtasks">Subtasks</label>
-                    <input class="input-tasks" type="text" id="subtasks">
-                    <input class="input-tasks" class="subtsk-check" type="checkbox" >
+                    <label class="label-tasks" for="subtask">Subtasks</label>
+                    <div id="subtasksCont">
+                        <input class="input-tasks" type="text" id="subtask" placeholder="Add new subtask">
+                        <img style="cursor: pointer" id="addSubtskIcon" src="./assets/img/plus.svg" alt="" onclick="activeSubtask()">
+                        <div id="subtasks-icons" class="d-none">
+                            <img onclick="cancelNewSubtask()" id="closeSub" src="./assets/img/close.svg" alt="">
+                            <img onclick="addNewSubtask()" id="doneSub" src="./assets/img/done.svg" alt="">
+                        </div>
+                    </div>
+                    <div id="subtasksBox">
+                        <input type="checkbox" id="subtask1" name="subtask1" value="add-new-contact" >
+                        <label for="subtask1">Add new contact</label><br>
+
+                    </div>
     
                 </div>
             </div>
             <div class="btns-form">
                 <button id="clear">Clear</button>
-                <button id="createTask">Create Task</button>
+                <button type="submit" id="createTask">Create Task</button>
             </div>
         </form>
 
