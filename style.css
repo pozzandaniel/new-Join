@@ -379,9 +379,13 @@ input:focus, textarea:focus, select:focus {
 
 }
 
+#priority {
+    display: flex;
+    justify-content: space-around;
+}
 
 
-#priority button {
+#priority a {
     width: 136px;
     height: 45px;
     font-family: Inter;
@@ -391,17 +395,20 @@ input:focus, textarea:focus, select:focus {
     border: none;
     background-color: #FFFFFF;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 
 
 }
 
-#priority button:hover {
+#priority a:hover {
     transform: scale(1.02);
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
 
 }
 
-#title, #priority button {
+#title, #priority a {
     padding: 9px 21px;
 }
 
@@ -411,9 +418,8 @@ input:focus, textarea:focus, select:focus {
     box-sizing: border-box;
     border: 1px solid #D1D1D1;
     width: 100%;
-    border-right: 16px solid transparent
-
-
+    border-right: 16px solid transparent;
+    
 }
 
 

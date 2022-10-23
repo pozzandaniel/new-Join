@@ -125,7 +125,7 @@
 
             }
             if(url == 'login.html' || url == 'signup.html'){
-                window.location.replace('summary.html');
+                window.location.replace('');
             }
           });
 
