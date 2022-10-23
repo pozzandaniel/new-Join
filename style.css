@@ -535,4 +535,43 @@ input:focus, textarea:focus, select:focus {
     font-size: 16px;
 }
 
+#redirectCont {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#redirectButton {
+    background-color: #2A3647;
+    color: #FFFFFF;
+    font-weight: 700;
+    border: 1px solid #2A3647;
+    height: 61px;
+    font-family: Inter;
+    font-size: 19px;
+    padding:15px 10;
+    box-sizing: border-box;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    animation: addTaskAn 1s ease-in-out;
+   
+}
+
+@keyframes addTaskAn {
+    from {
+        transform: translateY(100vh);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
 

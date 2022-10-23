@@ -247,6 +247,7 @@ function createNewTask(){
     allTasks.push(newTask);
     saveAllTasks();
     clearInputValues();
+    redirectBoard();
 
 }
 
@@ -267,16 +268,25 @@ function saveAllTasks() {
 }
 
 function clearInputValues() {
-    let title = document.getElementById('title').value = '';
-    let description = document.getElementById('description').value = '';
-    let category = document.getElementById('category').value = '';
-    let assigned = document.getElementById('assigned').value = '';
-    let dueDate = document.getElementById('dueDate').value = '';
+    document.getElementById('title').value = '';
+    document.getElementById('description').value = '';
+    document.getElementById('category').value = '';
+    document.getElementById('assigned').value = '';
+    document.getElementById('dueDate').value = '';
 }
 
 async function loadAllTasks() {
     await downloadFromServer();
     allTasks = JSON.parse(backend.getItem('allTasks')) || [];
+}
+
+function redirectBoard(){
+    let redirectCont = document.getElementById('redirectCont');
+    redirectCont.classList.remove('d-none');
+    setTimeout(( ) => {
+        window.location.replace('board.html')
+
+    }, 500);
 }
 
 
